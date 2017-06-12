@@ -4,7 +4,7 @@
 #include <set>
 
 #include "../bitscan.h"				//bit string library
-#include "google/gtest/gtest.h"
+#include "gtest/gtest.h"
 
 using namespace std;
 

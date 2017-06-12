@@ -4,7 +4,7 @@
 #include <set>
 
 #include "../bitscan.h"				//bit string library
-#include "google/gtest/gtest.h"
+#include "gtest/gtest.h"
 
 #include "../bbintrinsic_sparse.h"
 
@@ -776,12 +776,12 @@ TEST(Sparse, copy_in_closed_range_special_cases){
 	bbcopy.clear();
 	bbcopy.init_bit(64, 65, bbsp);
 	EXPECT_EQ(1, bbcopy.popcn64());
-	EXPECT_TRUE(64, bbcopy.is_bit(64));
+	EXPECT_TRUE(bbcopy.is_bit(64));
 
 	bbcopy.clear();
 	bbcopy.init_bit(63, 64, bbsp);
 	EXPECT_EQ(1, bbcopy.popcn64());
-	EXPECT_TRUE(64, bbcopy.is_bit(64));
+	EXPECT_TRUE(bbcopy.is_bit(64));
 }
 
 TEST(Sparse, keep_operations) {

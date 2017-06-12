@@ -1,6 +1,6 @@
 
 #include "../bitscan.h"
-#include "google/gtest/gtest.h"
+#include "gtest/gtest.h"
 #include <iostream>
 
 using namespace std;

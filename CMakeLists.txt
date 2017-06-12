@@ -10,14 +10,14 @@ endif()
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-#include(CTest)
-#enable_testing()
+include(CTest)
+enable_testing()
 
-#find_package(GTest REQUIRED)
-#include_directories(SYSTEM ${GTEST_INCLUDE_DIR})
+find_package(GTest REQUIRED)
+include_directories(SYSTEM ${GTEST_INCLUDE_DIR})
 
-#find_package(GMock REQUIRED)
-#include_directories(SYSTEM ${GMOCK_INCLUDE_DIRS})
+find_package(GMock REQUIRED)
+include_directories(SYSTEM ${GMOCK_INCLUDE_DIRS})
 
 
 
@@ -155,6 +155,16 @@ set(LIB_SOURCES
     )
 
 
+set(LIB_TEST_SOURCES
+    tests/test_bitblock.cpp  
+    tests/test_bitstrings.cpp  
+    tests/test_example.cpp  
+    tests/test_masking.cpp  
+    tests/test_sentinels.cpp  
+    tests/test_sparse.cpp
+   )
+
+
 #Threads
 find_package(Threads)
 
@@ -183,3 +193,11 @@ target_link_libraries(${PROJECT_NAME} ${EXT_LIBS})
 #Install
 install(TARGETS ${PROJECT_NAME} ARCHIVE DESTINATION lib)
 install(FILES ${LIB_HEADERS} DESTINATION include/bitscan/${LIB})
+
+
+#Tests
+add_executable (${PROJECT_NAME}_test ${LIB_TEST_SOURCES})
+target_link_libraries(${PROJECT_NAME}_test ${PROJECT_NAME})
+target_link_libraries(${PROJECT_NAME}_test ${GTEST_LIBRARIES} ${GMOCK_BOTH_LIBRARIES})
+add_test(NAME ${PROJECT_NAME}_test COMMAND ${PROJECT_NAME}_test --gtest_output=xml:gtestresults.xml --gtest_color=yes)
+
